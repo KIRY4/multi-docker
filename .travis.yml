@@ -3,20 +3,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t k1ry4/react-test -f ./client/Dockerfile.dev ./client/Dockerfile.dev ./client
+  - docker build -t kiry4/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run k1ry4/react-test npm test -- --coverage
+  - docker run kiry4/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t k1ry4/multi-client ./client
-  - docker build -t k1ry4/multi-nginx ./nginx
-  - docker build -t k1ry4/multi-server ./server
-  - docker build -t k1ry4/multi-worker ./worker
+  - docker build -t kiry4/multi-client ./client
+  - docker build -t kiry4/multi-nginx ./nginx
+  - docker build -t kiry4/multi-server ./server
+  - docker build -t kiry4/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PWD" | docker login -u "DOCKER_ID" --password-stdin
   # Take this images and push them to docker hub
-  - docker push k1ry4/multi-client 
-  - docker push k1ry4/multi-nginx
-  - docker push k1ry4/multi-server
-  - docker push k1ry4/multi-worker
+  - docker push kiry4/multi-client
+  - docker push kiry4/multi-nginx
+  - docker push kiry4/multi-server
+  - docker push kiry4/multi-worker
